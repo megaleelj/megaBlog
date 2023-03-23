@@ -16,12 +16,10 @@ use App\Http\Controllers\MyBlogController;
 */
 
 Route::get('/', function () {
-    return view('myBlogs.index');
+    return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [MyBlogController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,5 +29,6 @@ Route::middleware('auth')->group(function () {
 
 // Routes for myBlog resource
 Route::resource('myBlogs', MyBlogController::class);
+Route::get('blog', [MyBlogController::class, 'index'])->name('blog');
 
 require __DIR__.'/auth.php';

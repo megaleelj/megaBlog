@@ -1,10 +1,9 @@
 @extends('layouts.app')
 @section('content')
-@section('title', __('New Blog') )
+@section('title', __('Edit Blog') )
 
 
 <div class="container">
-<div class="col-md-6 mb-3 mb-md-0 text-md-left"><a class="btn btn-dark" href="{{URL("/myBlogs/create")}}">New Blog</a></div>
 <br>
     <h1> Edit  Blog Post</h1>
 {!! Form::open(array( 'route'=>['myBlogs.update', $blog->id],'method' => 'PUT','enctype' => 'multipart/form-data')) !!} 
@@ -53,4 +52,4 @@
 
 </div>
 
-@endsection
+@endsections
