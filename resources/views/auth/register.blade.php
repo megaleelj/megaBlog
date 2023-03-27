@@ -1,3 +1,9 @@
+<style>
+    .error-message {
+    color: red;
+}
+
+</style>
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
@@ -12,7 +18,8 @@
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" onchange="myFunction()" />
+            <div id="email-error" class="error-message"></div>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -50,3 +57,26 @@
         </div>
     </form>
 </x-guest-layout>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script>
+    function myFunction() {
+        var email = document.getElementById("email").value;
+        console.log(email);
+        $.ajax({
+            url: '{{ route("checkEmail") }}',
+            type: 'POST',
+            data: {
+                '_token': '{{ csrf_token() }}',
+                'email': email
+            },
+            success: function(data) {
+                if (data.exists) {
+                    $('#email-error').html('Email already exists.');
+                } else {
+                    $('#email-error').html('');
+                }
+            }
+        });
+    }
+</script>

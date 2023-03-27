@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\myBlog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class MyBlogController extends Controller
 {
@@ -203,7 +205,7 @@ class MyBlogController extends Controller
         }
         $blog ->save();
 
-        return redirect('/ktf_blog') ->with('success','blog updated');
+        return redirect('/blog') ->with('success','blog updated');
     }
 
     /**
@@ -222,7 +224,7 @@ class MyBlogController extends Controller
         Storage::delete('public/blog_images/'.$blog->blog_image2);
         Storage::delete('public/blog_images/'.$blog->blog_image3);
         $blog->delete();
-        return redirect('/ktf_blog') ->with('success','blog deleted');
+        return redirect('/blog') ->with('success','blog deleted');
 
     }
 }

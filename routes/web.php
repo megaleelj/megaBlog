@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyBlogController;
-
+use App\Http\Controllers\Auth\RegisteredUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,5 +30,6 @@ Route::middleware('auth')->group(function () {
 // Routes for myBlog resource
 Route::resource('myBlogs', MyBlogController::class);
 Route::get('blog', [MyBlogController::class, 'index'])->name('blog');
+Route::post('/check-email', [RegisteredUserController::class, 'checkEmail'])->name('checkEmail');
 
 require __DIR__.'/auth.php';

@@ -23,6 +23,19 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
 
+    public function checkEmail(Request $request)
+    {
+        $email = $request->input('email');
+        
+        $user = User::where('email', $email)->first();
+        
+        if ($user) {
+            return response()->json(['exists' => true]);
+        } else {
+            return response()->json(['exists' => false]);
+        }
+    }
+    
     /**
      * Handle an incoming registration request.
      *
