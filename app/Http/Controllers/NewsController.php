@@ -11,7 +11,7 @@ class NewsController extends Controller
     public function getNews()
 {
     $client = new Client([
-        'base_uri' => 'https://newsapi.org/v2/',
+        'base_uri' => 'https://newsapi.org/v2/everything',
         'timeout'  => 5.0,
     ]);
 
