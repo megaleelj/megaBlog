@@ -5,7 +5,7 @@
 
 <div class="container">
 <br>
-    <h1> Edit  Blog Post</h1>
+    <h1> Edit Blog Post</h1>
 {!! Form::open(array( 'route'=>['myBlogs.update', $blog->id],'method' => 'PUT','enctype' => 'multipart/form-data')) !!} 
 <form class="row g-3">
 

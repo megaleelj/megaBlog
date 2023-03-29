@@ -4,7 +4,7 @@
 
 
 <div class="container">
-    <h1> Create a New Blog </h1>
+    <h1> Create New Blog </h1>
 {!! Form::open(array( 'route'=>'myBlogs.store','enctype' => 'multipart/form-data')) !!} 
 <form class="row g-3">
 

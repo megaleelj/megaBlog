@@ -31,6 +31,6 @@ Route::middleware('auth')->group(function () {
 Route::resource('myBlogs', MyBlogController::class);
 Route::get('blog', [MyBlogController::class, 'index'])->name('blog');
 Route::post('/check-email', [RegisteredUserController::class, 'checkEmail'])->name('checkEmail');
-Route::get('/api/news', 'NewsController@index');
+Route::get('/newsapi', 'NewsController@index');
 
 require __DIR__.'/auth.php';
