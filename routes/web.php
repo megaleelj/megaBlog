@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyBlogController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\NewsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,9 +16,9 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', [MyBlogController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('myBlogs', MyBlogController::class);
 Route::get('blog', [MyBlogController::class, 'index'])->name('blog');
 Route::post('/check-email', [RegisteredUserController::class, 'checkEmail'])->name('checkEmail');
-Route::get('/newsapi', 'NewsController@index');
+Route::post('/location', [NewsController::class, 'index'])->name('welcome.show');
+Route::get('/', [NewsController::class, 'index']);
 
 require __DIR__.'/auth.php';
